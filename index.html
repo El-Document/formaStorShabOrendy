@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="main">
+        <div class="title">
+          <div>
+            <p class="nameDoc">Договір оренди землі</p>
+            <p>
+              ЗАТВЕРДЖЕНО постановою Кабінету Міністрів України від 3 березня
+              2004 р. № 220
+            </p>
+          </div>
+        </div>
+        <div class="mainCont">
+          <div class="cont noprint">
+            <div class="button">
+              <p class="back" id="back-button">Створити</p>
+              <a
+                href="https://el-document.github.io/opl-shablon-dog-orend-zem/"
+                target="_blank"
+                class="next"
+                id="next-button"
+                >Скачати</a
+              >
+            </div>
+            <hr />
+            <p>Одразу перейти до оплати</p>
+            <p>Вибрати інший документ</p>
+          </div>
+
+          <div class="doc">
+            <div id="docData">
+              <img src="chrome_6GvqaI5trO.png" alt="" />
+              <img src="chrome_69bWC5kynE.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    function html2word(element, filename = "") {
+      var preHtml =
+        "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+      var postHtml = "</bo" + "dy></ht" + "ml>";
+      var html = preHtml + element.innerHTML + postHtml;
+
+      var blob = new Blob(["\ufeff", html], {
+        type: "application/msword",
+      });
+
+      // Specify link url
+      var url =
+        "data:application/vnd.ms-word;charset=utf-8," +
+        encodeURIComponent(html);
+
+      // Specify file name
+      filename = filename ? filename + ".doc" : "document.doc";
+
+      // Create download link element
+      var downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+
+      if (navigator.msSaveOrOpenBlob) {
+        navigator.msSaveOrOpenBlob(blob, filename);
+      } else {
+        // Create a link to the file
+        downloadLink.href = url;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+      }
+
+      document.body.removeChild(downloadLink);
+    }
+  </script>
+  <script>
+    let inputElement = document.getElementById("celsiusElement");
+    let farengeitElement = document.getElementById("farengeit");
+    let nameElement = document.getElementsByClassName("nameData");
+    let yaerElement = document.getElementById("yaer");
+    let cvd1Elemrnt = document.getElementById("cvd1");
+    let cvd2Elemrnt = document.getElementById("cvd2");
+    let cvd3Elemrnt = document.getElementById("cvd3");
+    let cvd4Elemrnt = document.getElementById("cvd4");
+    let cvd5Elemrnt = document.getElementById("cvd5");
+    let gaElement = document.getElementById("ga");
+    let cadNam1Element = document.getElementById("cadNam1");
+    let cadNam2Element = document.getElementById("cadNam2");
+    let cadNam3Element = document.getElementById("cadNam3");
+    let locationElement = document.getElementById("location");
+    let loc2Element = document.getElementById("loc2");
+    let pasportElement = document.getElementById("pasport");
+    let pasportdetElement = document.getElementById("pasportdet");
+    let rnokppElement = document.getElementById("rnokpp");
+    let addressElement = document.getElementById("address");
+    let nextButtonElement = document.getElementById("next-button");
+    let titleElement = document.getElementById("title");
+    let backButtonElement = document.getElementById("back-button");
+    let currentElement = farengeitElement;
+    let docDataElement = document.getElementById("docData");
+    let elementArray = [
+      farengeitElement,
+      nameElement,
+      yaerElement,
+      cvd1Elemrnt,
+      cvd2Elemrnt,
+      cvd3Elemrnt,
+      cvd4Elemrnt,
+      cvd5Elemrnt,
+      gaElement,
+      cadNam1Element,
+      cadNam2Element,
+      cadNam3Element,
+      locationElement,
+
+      loc2Element,
+
+      pasportElement,
+      pasportdetElement,
+      rnokppElement,
+      addressElement,
+    ];
+    let TitleArray = [
+      "Вкажіть назву СФГ",
+      "Вкажіть ПІБ голови СФГ",
+      "Вкажіть рік народження",
+      "Вкажіть КВЕД 1 (основний)",
+      "Вкажіть КВЕД 2",
+      "Вкажіть КВЕД 3",
+      "Вкажіть КВЕД 4",
+      "Вкажіть КВЕД 5",
+      "Вкажіть площу в га",
+      "Вкажіть кадастровий номер ділянки1",
+      "Вкажіть кадастровий номер ділянки 2",
+      "Вкажіть кадастровий номер ділянки 3",
+      "Вкажіть місце розташування земельної ділянки",
+
+      "Вкажіть вулицю, будинок, квартиру, назву населеного пункту, район, поштовий індекс",
+
+      "Вкажіть серію та номер паспорта голови СФГ",
+      "Орган видачі паспорта",
+      "РНОКПП ",
+      "Місце реєстрації голови СФГ",
+    ];
+    let placeholderArray = [
+      "Напр: Ягідка",
+      "Напр: Тимощук Василь іванович",
+      "Напр: 1985",
+      "Напр: 01.25 Вирощування ягід, горіхів та інших фруктів",
+      "Напр: 01.19 Вирощування інших однорічних і дворічних культур",
+      "Напр: 01.13 Вирощування овочів і баштанних культур, коренеплодів і бульбоплодів ",
+      "Напр: 01.47 Розведення свійської птиці",
+      "Напр: 01.61 Допоміжна діяльність у рослинництві",
+      "Напр: 12",
+      "Напр: 6821889500:05:007:0011-1,6га",
+      "Напр: 6821889500:05:007:0011-1,6га",
+      "Напр: 6821889500:05:007:0011-1,6га",
+      "Напр: с.Жажків, вул.Шевченка",
+
+      "Напр: вул.Шевченка, Буд.15/4, с.Жажків, Коломийський р-н., 11506",
+
+      "Напр: СС 380602",
+      "Напр: Снятинським РВ УМВС 25 квітня 1996р.",
+      "Напр: 2653144011",
+      "Напр: вул.Шевченка, Буд.15/4, с.Жажків, Коломийський р-н., 11506",
+    ];
+
+    let currentIndex = 0;
+
+    console.log(elementArray);
+    function onInput() {
+      if (currentElement.length) {
+        for (let i = 0; i < currentElement.length; i++)
+          currentElement[i].innerText = inputElement.value + " ";
+      } else {
+        currentElement.innerText = inputElement.value + " ";
+      }
+      console.log(currentElement);
+      currentElement.innerText = inputElement.value + " ";
+    }
+    function next() {
+      currentIndex = currentIndex + 1;
+      refresh();
+    }
+    function back() {
+      currentIndex = currentIndex - 1;
+      refresh();
+    }
+    function refresh() {
+      console.log("Before if", currentIndex, elementArray.length);
+      if (currentIndex < 0) currentIndex = 0;
+      if (currentIndex === elementArray.length) {
+        currentIndex = elementArray.length - 1;
+        html2word(docDataElement);
+        // html2pdf(docDataElement, {
+        //   margin: 10,
+        //   pagebreak: { mode: "avoid-all" },
+        // });
+        // window.open("https://el-document.github.io/pay/", "_self");
+      }
+      console.log("after if", currentIndex, elementArray.length);
+      currentElement = elementArray[currentIndex];
+      titleElement.innerText = TitleArray[currentIndex];
+      console.log(currentElement);
+      if (currentElement.length) {
+        inputElement.value = currentElement[0].innerText;
+        currentElement[0].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      } else {
+        inputElement.value = currentElement.innerText;
+
+        currentElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      const currentplaceholder = placeholderArray[currentIndex];
+      inputElement.setAttribute("placeholder", currentplaceholder);
+    }
+    inputElement.addEventListener("input", onInput);
+    nextButtonElement.addEventListener("click", next);
+    backButtonElement.addEventListener("click", back);
+  </script>
+</html>
